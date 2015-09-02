@@ -3,7 +3,7 @@
 Registers .bpmn files as a media type for use in WordPress.
 
 ## Requirements
-- WordPress (
+- WordPress
 
 ## Installation
 1. Install WordPress
