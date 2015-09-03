@@ -5,10 +5,10 @@ Registers .bpmn files as a media type for use in WordPress.
 ## Requirements
 * WordPress
   * [Download latest WordPress](https://wordpress.org/download/).
-  * [Famous_5-Minute_Install Istructions](https://codex.wordpress.org/Installing_WordPress#Famous_5-Minute_Install).
+  * [Famous 5-Minute Install Instructions](https://codex.wordpress.org/Installing_WordPress#Famous_5-Minute_Install).
 
 ## Installation
-1. Clone this repository in the `/wp-content/plugins/` of your WordPress install.
+1. Clone or Unzip this repository into the `/wp-content/plugins/` of your WordPress install. 
 2. Activate `bpmn-io-WP-Plugin` under `Admin -> Plugins -> bpmn.io -> Activate`.
 
 ## Usage
