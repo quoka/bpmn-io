@@ -9,7 +9,6 @@
  */
 
 
-
 // Register BPMN mime type
 function mime_type_bpmn($existing_mimes) {
 	$existing_mimes['bpmn'] = 'application/bpmn+xml';
@@ -20,7 +19,7 @@ add_filter('mime_types', 'mime_type_bpmn');
 
 
 // Register BPMN as Media Type
-function post_mime_type_bpmn($post_mime_types) {
+function media_type_bpmn($post_mime_types) {
 	$post_mime_types['application/bpmn+xml'] = array(
 		__('BPMN'), 
 		__('Manage BPMN Diagrams'), 
@@ -28,13 +27,14 @@ function post_mime_type_bpmn($post_mime_types) {
 	);
 	return $post_mime_types;
 }
-add_filter('post_mime_types', 'post_mime_type_bpmn');
+add_filter('post_mime_types', 'media_type_bpmn');
 
 
 
-// Include bpmn-io ONLY when post contains a .bpmn media attachment
+// Include bpmn.io when post contains a .bpmn media attachment
 function bpmn_mediaType_handler($content) {
-	if (strstr($content, '.bpmn')) {
+	$attachments = get_attached_media( 'application/bpmn+xml');
+	if (!empty($attachments)) {
 		wp_enqueue_script( 'bpmn-io_navigated', plugins_url('/bower_components/bpmn-js/dist/bpmn-navigated-viewer.min.js', __FILE__), array('jquery'), '1.0', true );
 	}
 	return $content;
@@ -83,6 +83,38 @@ function bpmn_media_to_editor( $html, $id, $attachment ) {
 	return $html;
 }
 add_filter( 'media_send_to_editor', 'bpmn_media_to_editor', 7, 3 );
+
+
+
+
+
+// Include bpmn.io when post contains a [bpmn] short code media attachment
+function bpmn_shortcode_handler($atts) {
+	//wp_enqueue_script( 'bpmn-io_navigated', plugins_url('/bower_components/bpmn-js/dist/bpmn-navigated-viewer.min.js', __FILE__), array('jquery'), '1.0', true );
+	//return '<b>did things</b><br>'. $atts;
+	return $atts;
+}
+add_shortcode('bpmn', 'bpmn_shortcode_handler');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

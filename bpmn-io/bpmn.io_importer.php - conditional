@@ -32,10 +32,11 @@ add_filter('post_mime_types', 'post_mime_type_bpmn');
 
 
 
-// Include bpmn-io ONLY when post contains a .bpmn media attachment
+// Include bpmn.io when post contains a .bpmn media attachment
 function bpmn_mediaType_handler($content) {
-	if (strstr($content, '.bpmn')) {
-		wp_enqueue_script( 'bpmn-io_navigated', plugins_url('/bower_components/bpmn-js/dist/bpmn-navigated-viewer.min.js', __FILE__), array('jquery'), '1.0', true );
+	$attachments = get_attached_media( 'application/bpmn+xml');
+	if (!empty($attachments)) {
+		wp_enqueue_script( 'bpmn-io_navigated', plugins_url('/bower_components/bpmn-js/dist/bpmn-navigated-viewer.min.js',__FILE__) );
 	}
 	return $content;
 }
